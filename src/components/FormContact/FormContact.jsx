@@ -58,7 +58,7 @@ const FormContact = () => {
           <Input
             type="text"
             name="name"
-            pattern="^[a-zA-Zа-яА-Я]+([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$"
+            pattern="^[a-zA-Zа-яА-Я]+([' \x2D\x5B-\x5D][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             placeholder="Name"
@@ -70,7 +70,7 @@ const FormContact = () => {
           <Input
             type="tel"
             name="number"
-            pattern="[+]?[\d\s.-]{1,30}"
+            pattern="[+]?[\d\s.\x2D]{1,30}"
             title="Phone number must be digits and can contain spaces, dashes, periods, and can start with +"
             required
             placeholder="Number"

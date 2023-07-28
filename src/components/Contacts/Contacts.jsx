@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
-import { Box, Text, Button, Container } from '@chakra-ui/react';
+import { Box, Text, Button } from '@chakra-ui/react';
 import {
   deleteContactThunk,
   getContactsThunk,
@@ -36,38 +36,48 @@ const Contacts = () => {
       </Text>
 
       {error && <Text>Something went wrong...</Text>}
-      {contacts.lenght < 1 ? (
-        <Text>Your Phonebook is empty. Please add a contact.</Text>
+      {loading ? (
+        <Text textAlign="center" fontSize="xl" color="gray.500" my={8}>
+          Loading...
+        </Text>
       ) : (
         <>
-          <Filter />
-          <Box>
-            {contacts.map(contact => (
-              <Box
-                key={contact.id}
-                borderWidth="1px"
-                borderRadius="md"
-                p={3}
-                mb={3}
-                display="flex"
-                alignItems="center"
-              >
-                <Text fontWeight="bold" mr={2}>
-                  {contact.name}:
-                </Text>
-                <Text>{contact.number}</Text>
-                <Button
-                  type="button"
-                  ml="auto"
-                  colorScheme="red"
-                  size="sm"
-                  onClick={() => handleDeleteContact(contact.id)}
-                >
-                  Delete
-                </Button>
+          {contacts.length === 0 ? (
+            <Text textAlign="center" fontSize="xl" color="gray.500" my={8}>
+              Your Phonebook is empty. Please add a contact.
+            </Text>
+          ) : (
+            <>
+              <Filter />
+              <Box>
+                {contacts.map(contact => (
+                  <Box
+                    key={contact.id}
+                    borderWidth="1px"
+                    borderRadius="md"
+                    p={3}
+                    mb={3}
+                    display="flex"
+                    alignItems="center"
+                  >
+                    <Text fontWeight="bold" mr={2}>
+                      {contact.name}:
+                    </Text>
+                    <Text>{contact.number}</Text>
+                    <Button
+                      type="button"
+                      ml="auto"
+                      colorScheme="red"
+                      size="sm"
+                      onClick={() => handleDeleteContact(contact.id)}
+                    >
+                      Delete
+                    </Button>
+                  </Box>
+                ))}
               </Box>
-            ))}
-          </Box>
+            </>
+          )}
         </>
       )}
     </Box>
