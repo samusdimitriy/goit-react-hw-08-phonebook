@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Box } from '@chakra-ui/react';
 
 const styles = {
   link: {
@@ -16,12 +17,12 @@ const styles = {
 
 const AuthNav = () => {
   return (
-    <div>
+    <Box as="div">
       <NavLink
         to="/register"
         exact="true"
         style={styles.link}
-        activeclassname="activeLink"
+        activeclassname={styles.activeLink} // Исправляем здесь
       >
         Registration
       </NavLink>
@@ -29,11 +30,11 @@ const AuthNav = () => {
         to="/login"
         exact="true"
         style={styles.link}
-        activeclassname="activeLink"
+        activeclassname={styles.activeLink} // Исправляем здесь
       >
         Login
       </NavLink>
-    </div>
+    </Box>
   );
 };
 

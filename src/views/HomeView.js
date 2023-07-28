@@ -9,7 +9,7 @@ const HomeView = () => (
     justifyContent="center"
   >
     <Heading as="h1" size="2xl" fontWeight="500" textAlign="center">
-      Your personal phonebook.
+      Your personal phonebook is hier.
     </Heading>
   </Box>
 );

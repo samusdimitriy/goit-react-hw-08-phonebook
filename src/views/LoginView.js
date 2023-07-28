@@ -1,68 +1,78 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Input,
+  FormControl,
+  FormLabel,
+  Heading,
+  Container,
+} from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
+import Notiflix from 'notiflix';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
-
-export default function LoginView() {
+const LoginView = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      await dispatch(authOperations.logIn({ email, password }));
+      setEmail('');
+      setPassword('');
+    } catch (error) {
+      Notiflix.Notify.failure(' Failed to log in: ' + error);
     }
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
-  };
-
   return (
-    <div>
-      <h1>Страница логина</h1>
+    <Box
+      minHeight="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      bgGradient="linear(to bottom, #f6f6f6, #ffffff)"
+    >
+      <Container p={8} maxW="400px" bg="white" boxShadow="md" borderRadius="lg">
+        <Heading as="h1" size="xl" mb={6} textAlign="center">
+          Log in{' '}
+        </Heading>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+        <Box as="form" onSubmit={handleSubmit}>
+          <FormControl mb={3}>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              name="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+              borderColor="gray.400"
+            />
+          </FormControl>
 
-        <label style={styles.label}>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
+          <FormControl mb={3}>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              borderColor="gray.400"
+            />
+          </FormControl>
 
-        <button type="submit">Войти</button>
-      </form>
-    </div>
+          <Button type="submit" colorScheme="teal" width="full">
+            Submit
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
-}
+};
+
+export default LoginView;

@@ -7,8 +7,10 @@ import App from './App';
 import { store, persistor } from './redux/store';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ChakraProvider } from '@chakra-ui/react';
+import Notiflix from 'notiflix';
 
 import './index.css';
+Notiflix.Notify.init();
 
 function ErrorFallback({ error }) {
   return <div>Ошибка: {error.message}</div>;
@@ -16,16 +18,16 @@ function ErrorFallback({ error }) {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <PersistGate loading={null} persistor={persistor}>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <ChakraProvider>
+    <ChakraProvider>
+      <Provider store={store}>
+        <BrowserRouter basename="/">
+          <PersistGate loading={null} persistor={persistor}>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
               <App />
-            </ChakraProvider>
-          </ErrorBoundary>
-        </PersistGate>
-      </BrowserRouter>
-    </Provider>
+            </ErrorBoundary>
+          </PersistGate>
+        </BrowserRouter>
+      </Provider>
+    </ChakraProvider>
   </React.StrictMode>
 );

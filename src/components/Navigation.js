@@ -24,7 +24,7 @@ const Navigation = () => {
         to="/"
         exact="true"
         style={styles.link}
-        activeclassname={styles.activeLink}
+        activeclassname={styles.activeLink} // Исправляем здесь
       >
         Home
       </NavLink>
@@ -35,7 +35,7 @@ const Navigation = () => {
             to="/contacts"
             exact="true"
             style={styles.link}
-            activeclassname="activeLink"
+            activeclassname={styles.activeLink} // Исправляем здесь
           >
             Contacts
           </NavLink>

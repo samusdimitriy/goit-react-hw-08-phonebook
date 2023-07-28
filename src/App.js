@@ -5,16 +5,17 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Container } from './components/Container/Container';
 import { PrivateRoute } from './components/PrivatRoute';
-import { RestrictedRoute } from './components/PublicRoute';
+import { RestrictedRoute } from './components/RestrictedRoute';
 import { authSelectors } from './redux/auth';
 import { refreshUser } from 'redux/auth/auth-operations';
+import { Loader } from 'components/Loader/Loader';
 
 // import { Wrapper } from 'components/Container/Container.styled';
 
 const HomeView = lazy(() => import('views/HomeView'));
 const Registration = lazy(() => import('components/Registration/Registration'));
-const Login = lazy(() => import('components/Login/Login'));
-const FormContact = lazy(() => import('components/FormContact/FormContact'));
+const LoginView = lazy(() => import('views/LoginView'));
+const ContactsView = lazy(() => import('views/ContactsView'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -25,9 +26,9 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<Loader />}>
       {isRefreshing ? (
-        <h1>Hello! Just a moment, please.</h1>
+        <Loader />
       ) : (
         <>
           <Routes>
@@ -47,7 +48,7 @@ export default function App() {
                 element={
                   <RestrictedRoute
                     redirectTo="/contacts"
-                    component={<Login />}
+                    component={<LoginView />}
                   />
                 }
               />
@@ -56,7 +57,7 @@ export default function App() {
                 element={
                   <PrivateRoute
                     redirectTo="/login"
-                    component={<FormContact />}
+                    component={<ContactsView />}
                   />
                 }
               />

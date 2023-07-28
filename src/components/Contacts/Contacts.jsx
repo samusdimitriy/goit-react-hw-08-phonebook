@@ -1,14 +1,7 @@
-import {
-  StyledContactsContainer,
-  StyledContactItem,
-  StyledContactName,
-  StyledContactNumber,
-  StyledDeleteButton,
-  StyledContactsHeading,
-  StyledContactsList,
-} from './Contacts.styled';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
+import { Box, Text, Button, Container } from '@chakra-ui/react';
 import {
   deleteContactThunk,
   getContactsThunk,
@@ -16,7 +9,6 @@ import {
 import contactsSelectors from 'redux/contacts/contacts-selectors';
 
 import Filter from 'components/Filter/Filter';
-import { useEffect } from 'react';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -38,33 +30,47 @@ const Contacts = () => {
   };
 
   return (
-    <>
-      <StyledContactsHeading>Contacts</StyledContactsHeading>
-      {error && <h1>Something went wrong...</h1>}
-      {loading ? (
-        <p>Your Phonebook is empty. Please add a contact.</p>
+    <Box width="50%" p={8} bg="white" boxShadow="md">
+      <Text as="h1" fontSize="2xl" fontWeight="bold" textAlign="center" mb={6}>
+        Contacts
+      </Text>
+
+      {error && <Text>Something went wrong...</Text>}
+      {contacts.lenght < 1 ? (
+        <Text>Your Phonebook is empty. Please add a contact.</Text>
       ) : (
         <>
           <Filter />
-          <StyledContactsContainer>
-            <StyledContactsList>
-              {contacts.map(contact => (
-                <StyledContactItem key={contact.id}>
-                  <StyledContactName>{contact.name}:</StyledContactName>
-                  <StyledContactNumber>{contact.number}</StyledContactNumber>
-                  <StyledDeleteButton
-                    type="button"
-                    onClick={() => handleDeleteContact(contact.id)}
-                  >
-                    Delete
-                  </StyledDeleteButton>
-                </StyledContactItem>
-              ))}
-            </StyledContactsList>
-          </StyledContactsContainer>
+          <Box>
+            {contacts.map(contact => (
+              <Box
+                key={contact.id}
+                borderWidth="1px"
+                borderRadius="md"
+                p={3}
+                mb={3}
+                display="flex"
+                alignItems="center"
+              >
+                <Text fontWeight="bold" mr={2}>
+                  {contact.name}:
+                </Text>
+                <Text>{contact.number}</Text>
+                <Button
+                  type="button"
+                  ml="auto"
+                  colorScheme="red"
+                  size="sm"
+                  onClick={() => handleDeleteContact(contact.id)}
+                >
+                  Delete
+                </Button>
+              </Box>
+            ))}
+          </Box>
         </>
       )}
-    </>
+    </Box>
   );
 };
 

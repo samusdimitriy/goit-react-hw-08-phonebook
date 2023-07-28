@@ -11,11 +11,6 @@ const getAllContacts = state => state.contacts.items;
 export const getVisibleContacts = createSelector(
   [getAllContacts, getFilter],
   (items, filter) => {
-    // if (!items || !filter) {
-    //   console.log(items, filter);
-    //   return [];
-    // }
-    console.log(items);
     return items.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );

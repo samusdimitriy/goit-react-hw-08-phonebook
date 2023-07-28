@@ -1,17 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Input,
+  FormControl,
+  FormLabel,
+  Heading,
+  Container,
+} from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -41,47 +39,64 @@ const Registration = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Name
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter name"
-            value={name}
-            onChange={handleChange}
-            required
-          />
-        </label>
+    <Box
+      minHeight="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      bgGradient="linear(to bottom, #f6f6f6, #ffffff)"
+    >
+      <Container p={8} maxW="400px" bg="white" boxShadow="md" borderRadius="lg">
+        <Heading as="h1" size="xl" mb={6} textAlign="center">
+          Registration
+        </Heading>
 
-        <label style={styles.label}>
-          Email
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={handleChange}
-            required
-          />
-        </label>
+        <Box as="form" onSubmit={handleSubmit}>
+          <FormControl mb={3}>
+            <FormLabel>Name</FormLabel>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Enter name"
+              value={name}
+              onChange={handleChange}
+              required
+              borderColor="gray.400"
+            />
+          </FormControl>
 
-        <label style={styles.label}>
-          Password
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={handleChange}
-            required
-          />
-        </label>
+          <FormControl mb={3}>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={handleChange}
+              required
+              borderColor="gray.400"
+            />
+          </FormControl>
 
-        <button type="submit">Register</button>
-      </form>
-    </div>
+          <FormControl mb={3}>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={handleChange}
+              required
+              borderColor="gray.400"
+            />
+          </FormControl>
+
+          <Button type="submit" colorScheme="teal" width="full">
+            Register
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
