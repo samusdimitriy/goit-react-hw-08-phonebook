@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-export default function Registration() {
+const Registration = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -42,15 +42,12 @@ export default function Registration() {
 
   return (
     <div>
-      <h1>Registration</h1>
-
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
         <label style={styles.label}>
           Name
           <input
             type="text"
             name="name"
-            pattern="^[^\d]+$"
             placeholder="Enter name"
             value={name}
             onChange={handleChange}
@@ -64,7 +61,6 @@ export default function Registration() {
             type="email"
             name="email"
             placeholder="Enter email"
-            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             value={email}
             onChange={handleChange}
             required
@@ -77,7 +73,6 @@ export default function Registration() {
             type="password"
             name="password"
             placeholder="Enter password"
-            pattern="^[a-zA-Z0-9]{7,}$"
             value={password}
             onChange={handleChange}
             required
@@ -88,4 +83,6 @@ export default function Registration() {
       </form>
     </div>
   );
-}
+};
+
+export default Registration;

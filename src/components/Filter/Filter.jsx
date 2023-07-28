@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeFilter } from 'redux/filter/filterSlice';
 
 const Filter = () => {
-  const value = useSelector(state => state.filter);
+  const value = useSelector(state => state.filter.filter);
   const dispatch = useDispatch();
 
   const handleChange = event => {

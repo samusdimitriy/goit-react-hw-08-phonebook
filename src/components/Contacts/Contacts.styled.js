@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const StyledContactsContainer = styled.div`
   margin-top: 20px;
@@ -17,6 +17,7 @@ export const StyledContactsHeading = styled.h2`
 export const StyledContactsList = styled.ul`
   margin: 0;
   padding: 0;
+
   list-style: none;
   display: flex;
   flex-direction: column;

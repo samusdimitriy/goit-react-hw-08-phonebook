@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   StyledContactsContainer,
   StyledContactItem,
@@ -17,6 +16,7 @@ import {
 import contactsSelectors from 'redux/contacts/contacts-selectors';
 
 import Filter from 'components/Filter/Filter';
+import { useEffect } from 'react';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -40,9 +40,10 @@ const Contacts = () => {
   return (
     <>
       <StyledContactsHeading>Contacts</StyledContactsHeading>
-      {loading && <h1>Loading...</h1>}
       {error && <h1>Something went wrong...</h1>}
-      {contacts.length > 0 ? (
+      {loading ? (
+        <p>Your Phonebook is empty. Please add a contact.</p>
+      ) : (
         <>
           <Filter />
           <StyledContactsContainer>
@@ -50,7 +51,7 @@ const Contacts = () => {
               {contacts.map(contact => (
                 <StyledContactItem key={contact.id}>
                   <StyledContactName>{contact.name}:</StyledContactName>
-                  <StyledContactNumber>{contact.phone}</StyledContactNumber>
+                  <StyledContactNumber>{contact.number}</StyledContactNumber>
                   <StyledDeleteButton
                     type="button"
                     onClick={() => handleDeleteContact(contact.id)}
@@ -62,8 +63,6 @@ const Contacts = () => {
             </StyledContactsList>
           </StyledContactsContainer>
         </>
-      ) : (
-        <p>Your Phonebook is empty. Please add a contact.</p>
       )}
     </>
   );

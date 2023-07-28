@@ -1,18 +1,20 @@
+import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addContact, deleteContact, getContacts } from 'services/contacts-api';
+import { deleteContact, getContacts } from 'services/contacts-api';
 
 export const getContactsThunk = createAsyncThunk('contacts/getContacts', () =>
   getContacts()
 );
 
 export const addContactThunk = createAsyncThunk(
-  'contacts/addContact',
-  async (contact, { rejectWithValue }) => {
+  'contacts/addContacts',
+  async ({ name, number }, thunkAPI) => {
     try {
-      const response = await addContact(contact);
-      return response;
+      const response = await axios.post('/contacts', { name, number });
+      return response.data; // Повернення отриманих даних
     } catch (error) {
-      return rejectWithValue(error.message);
+      // У разі помилки, відхилення дії із зазначенням помилки
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

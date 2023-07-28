@@ -1,28 +1,17 @@
 import React from 'react';
-
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 50px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: 500,
-    fontSize: 48,
-    textAlign: 'center',
-  },
-};
+import { Box, Heading } from '@chakra-ui/react';
 
 const HomeView = () => (
-  <div style={styles.container}>
-    <h1 style={styles.title}>
-      Приветственная страница нашего сервиса{' '}
-      <span role="img" aria-label="Иконка приветствия">
-        💁‍♀️
-      </span>
-    </h1>
-  </div>
+  <Box
+    minHeight="calc(100vh - 50px)"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+  >
+    <Heading as="h1" size="2xl" fontWeight="500" textAlign="center">
+      Your personal phonebook.
+    </Heading>
+  </Box>
 );
 
 export default HomeView;

@@ -12,7 +12,9 @@ export const handleFulfilledGet = (state, { payload }) => {
 };
 
 export const handleFulfilledAdd = (state, { payload }) => {
+  console.log('Handle Fulfilled Add:', payload);
   state.items = [...state.items, payload];
+  console.log(state.items);
 };
 
 export const handleFulfilledDel = (state, { payload }) => {

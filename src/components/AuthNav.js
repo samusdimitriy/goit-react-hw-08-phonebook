@@ -14,25 +14,27 @@ const styles = {
   },
 };
 
-export default function AuthNav() {
+const AuthNav = () => {
   return (
     <div>
       <NavLink
         to="/register"
-        exact
+        exact="true"
         style={styles.link}
-        activeStyle={styles.activeLink}
+        activeclassname="activeLink"
       >
         Registration
       </NavLink>
       <NavLink
         to="/login"
-        exact
+        exact="true"
         style={styles.link}
-        activeStyle={styles.activeLink}
+        activeclassname="activeLink"
       >
         Login
       </NavLink>
     </div>
   );
-}
+};
+
+export default AuthNav;
