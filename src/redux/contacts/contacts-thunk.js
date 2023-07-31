@@ -11,9 +11,8 @@ export const addContactThunk = createAsyncThunk(
   async ({ name, number }, thunkAPI) => {
     try {
       const response = await axios.post('/contacts', { name, number });
-      return response.data; // Повернення отриманих даних
+      return response.data; 
     } catch (error) {
-      // У разі помилки, відхилення дії із зазначенням помилки
       return thunkAPI.rejectWithValue(error.message);
     }
   }

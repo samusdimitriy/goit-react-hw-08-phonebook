@@ -10,10 +10,8 @@ import { authSelectors } from './redux/auth';
 import { refreshUser } from 'redux/auth/auth-operations';
 import { Loader } from 'components/Loader/Loader';
 
-// import { Wrapper } from 'components/Container/Container.styled';
-
 const HomeView = lazy(() => import('views/HomeView'));
-const Registration = lazy(() => import('components/Registration/Registration'));
+const Registration = lazy(() => import('views/Registration'));
 const LoginView = lazy(() => import('views/LoginView'));
 const ContactsView = lazy(() => import('views/ContactsView'));
 
