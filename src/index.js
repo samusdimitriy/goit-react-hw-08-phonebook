@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ChakraProvider>
       <Provider store={store}>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/goit-react-hw-08-phonebook">
           <PersistGate loading={null} persistor={persistor}>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
               <App />
