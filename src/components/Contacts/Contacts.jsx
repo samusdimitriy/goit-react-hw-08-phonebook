@@ -34,7 +34,7 @@ const Contacts = () => {
       <Text as="h1" fontSize="2xl" fontWeight="bold" textAlign="center" mb={6}>
         Contacts
       </Text>
-
+      <Filter />
       {error && <Text>Something went wrong...</Text>}
       {loading ? (
         <Text textAlign="center" fontSize="xl" color="gray.500" my={8}>
@@ -48,7 +48,6 @@ const Contacts = () => {
             </Text>
           ) : (
             <>
-              <Filter />
               <Box>
                 {contacts.map(contact => (
                   <Box
